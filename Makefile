@@ -1,4 +1,4 @@
-.PHONY: clean checks test build image dependencies e2e fmt
+.PHONY: clean checks test build image e2e fmt
 
 SRCS = $(shell git ls-files '*.go' | grep -v '^vendor/')
 
@@ -26,9 +26,6 @@ build: clean
 image:
 	@echo Version: $(VERSION)
 	docker build -t $(LEGO_IMAGE) .
-
-dependencies:
-	dep ensure -v
 
 test: clean
 	go test -v -cover ./...
